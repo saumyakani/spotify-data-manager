@@ -1,0 +1,134 @@
+
+:root {
+   
+    --spotify-green: #1DB954;
+    --spotify-dark: #121212;
+    --spotify-gray: #303030;
+    --spotify-light-gray: #b3b3b3;
+  }
+  
+  body, html {
+    overflow-x: hidden; 
+    background-color: var(--spotify-dark);
+  }
+  
+  .table-manager-container {
+    padding: 30px;
+    background-color: var(--spotify-dark);
+    color: white;
+    min-height: 100vh;
+   
+    box-sizing: border-box; 
+    width: 95%; 
+    margin: 0 auto;
+  }
+  
+  .header-title {
+    color: white;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--spotify-green);
+    padding-bottom: 10px;
+  }
+  
+  .controls-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .global-search-container {
+      display: flex;
+      align-items: center;
+  }
+  
+  .global-search-input {
+    padding: 10px 15px;
+    border: 1px solid var(--spotify-gray);
+    border-radius: 5px;
+    background-color: #242424;
+    color: white;
+    width: 300px;
+    transition: border-color 0.2s;
+  }
+  
+  .global-search-input::placeholder {
+    color: var(--spotify-light-gray);
+  }
+  
+  .global-search-input:focus {
+    border-color: var(--spotify-green);
+    outline: none;
+  }
+  
+  .export-button {
+    padding: 10px 15px;
+    background-color: var(--spotify-green);
+    color: var(--spotify-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .export-button:hover:not(:disabled) {
+    background-color: #1ed760;
+  }
+  
+  .export-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .loading-message,
+  .empty-state-message,
+  .current-view-info {
+    color: var(--spotify-light-gray);
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  .popularity-bar-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 15px; 
+  }
+  
+  .popularity-bar {
+    height: 60%;
+    background-color: var(--spotify-green);
+    border-radius: 2px;
+   
+    transition: width 0.3s ease-out; 
+  }
+
+.vibe-score-bar-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 10px; 
+  }
+  
+  .vibe-score-bar {
+    height: 80%;
+    background-color: #25287d; 
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    transition: width 0.3s ease-out;
+    position: relative;
+  }
+  
+  .vibe-score-text {
+      position: absolute;
+      right: 5px;
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  }
