@@ -90,16 +90,19 @@ export default function SpotifyTable() {
       const processedData = initialData.map((row, index) => ({
         id: index + 1, 
         ...row,
-        release_date: row.release_date ? new Date(row.release_date) : null,
-      }));
-
+        // 👇 CRITICAL FIX: Convert the release date string to a Date object here
+        track_album_release_date: row.track_album_release_date 
+            ? new Date(row.track_album_release_date) 
+            : null, // Use null if the date is missing
+    }));
       setData(processedData);
       setLoading(false);
     };
 
     const timer = setTimeout(loadData, 500);
-
+console.log(filteredData)
     return () => clearTimeout(timer); 
+
   }, []);
 
   const filteredData = useMemo(() => {
@@ -114,11 +117,11 @@ export default function SpotifyTable() {
       { field: "id", headerName: "ID", width: 70 },
       { field: "track_name", headerName: "Track Name", width: 250 },
 
-      { field: "artists", headerName: "Artist", width: 200 },
+      { field: "track_artist", headerName: "Artist", width: 200 },
 
-      { field: "album_name", headerName: "Album", width: 200 },
+      { field: "track_album_name", headerName: "Album", width: 200 },
 
-      { field: "track_genre", headerName: "Genre", width: 150 },
+      { field: "playlist_genre", headerName: "Genre", width: 150 },
 
       {
         field: "track_popularity",
@@ -129,12 +132,13 @@ export default function SpotifyTable() {
 
 
       {
-        field: "release_date",
+        field: "track_album_release_date",
         headerName: "Release Date",
         type: "date",
         width: 150,
+      
       },
-      { field: "explicit", headerName: "Explicit", type: "boolean", width: 90 },
+      
     ],
     []
   );
