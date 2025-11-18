@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { convertToCSV, downloadCSV } from '../../utils/csvExporter';
 
 
-export default function GlobalSearch({ onSearchChange }) {
-  const [searchTerm, setSearchTerm] = useState('');
+export default function DataExport({ dataToExport }) {
 
-  const handleChange = (event) => {
-    const newTerm = event.target.value;
-    setSearchTerm(newTerm);
-   
-    onSearchChange(newTerm);
+  const handleExport = () => {
+    if (dataToExport.length === 0) {
+      alert('No data to export!');
+      return;
+    }
+
+    const csvString = convertToCSV(dataToExport);
+    downloadCSV(csvString, 'spotify_tracks_export.csv');
   };
 
   return (
-    <div className="global-search-container">
-      <input
-        type="text"
-        placeholder="Search tracks, artists, or albums..."
-        value={searchTerm}
-        onChange={handleChange}
-        aria-label="Global search across all fields"
-        className="global-search-input"
-      />
-      
-    </div>
+    <button className="export-button" onClick={handleExport} disabled={dataToExport.length === 0}>
+      Export Current View ({dataToExport.length}) to CSV
+    </button>
   );
 }
